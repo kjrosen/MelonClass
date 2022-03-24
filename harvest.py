@@ -62,7 +62,6 @@ def print_pairing_info(melon_types):
         print(f"{melon.name} pairs with")
         for pairing in melon.pairings: 
             print(f"- {pairing}")
-    # Fill in the rest
 
 
 def make_melon_type_lookup(melon_types):
@@ -80,23 +79,60 @@ def make_melon_type_lookup(melon_types):
 ############
 
 
-class Melon:
+class Melon(MelonType):
     """A melon in a melon harvest."""
 
     # Fill in the rest
     # Needs __init__ and is_sellable methods
+    def __init__(self, type, shape_rating, color_rating, field, harvester):
+        self.type = type
+        self.shape_rating = shape_rating
+        self.color_rating = color_rating
+        self.field = field
+        self.harvester = harvester
 
+    def is_sellable(self):
+        
+        return self.shape_rating > 5 and self.color_rating > 5 and self.field != 3
+            
 
-def make_melons(melon_types):
+    # if both its shape and color ratings are greater than 5 = True
+    # not from field 3
+    
+
+def make_melons():
     """Returns a list of Melon objects."""
 
     # Fill in the rest
+    melon1 = Melon('yw', 8, 7, 2, 'Sheila')
+    melon2 = Melon('yw', 3, 4, 2, 'Sheila')
+    melon3 = Melon('yw', 9, 8, 3, 'Sheila')
+    melon4 = Melon('cas', 10, 6, 35, 'Sheila')
+    melon5 = Melon('cren', 8, 9, 35, 'Michael')
+    melon6 = Melon('cren', 8, 2, 35, 'Michael')
+    melon7 = Melon('cren', 2, 3, 4, 'Michael')
+    melon8 = Melon('musk', 6, 7, 4, 'Michael')
+    melon9 = Melon('yw', 7, 10, 3, 'Sheila')
+
+    return [melon1, melon2, melon3, melon4, melon5, melon6, melon7, melon8, melon9]
 
 
 def get_sellability_report(melons):
     """Given a list of melon object, prints whether each one is sellable."""
 
     # Fill in the rest
+    melons = make_melons()
 
+    for melon in melons:
+        if melon.is_sellable():
+            sellability ='(CAN BE SOLD)'
+        else:
+            sellability = '(NOT SELLABLE)'
+
+        print(f'Harvested by {melon.harvester} from field {melon.field} {sellability}')
+        # if melon.is_sellable():
+        #     print('(CAN BE SOLD')
+        # else:
+        #     print('(NOT SELLABLE)')
 
 
